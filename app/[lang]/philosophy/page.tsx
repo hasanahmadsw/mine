@@ -1,54 +1,27 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { PhilosophyPage } from "@/components/pages/PhilosophyPage";
-import { Locale } from "@/app/i18n/settings";
-import { Metadata } from "next";
-import { getTranslations } from "@/app/i18n/server";
+import { getDictionary } from "@/utils/translations/dictionary-utils";
+import type { Lang } from "@/utils/translations/i18n-config";
+import { createMeta } from "@/utils/seo/meta/createMeta";
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ lang: Lang }> }) {
   const { lang } = await params;
-  const t = await getTranslations(lang);
-  return {
-    title: t.philosophy.meta.title,
-    description: t.philosophy.meta.description,
-    keywords: t.philosophy.meta.keywords,
-    authors: [{ name: t.philosophy.meta.authors }],
-    creator: t.philosophy.meta.creator,
-    metadataBase: new URL("https://hasanahmad.net"),
-    openGraph: {
-      type: "website",
-      locale: lang === "ar" ? "ar_US" : "en_US",
-      url: "https://hasanahmad.net",
-      title: t.philosophy.meta.title,
-      description: t.philosophy.meta.description,
-      siteName: t.philosophy.meta.siteName,
-      images: [
-        {
-          url: "/og-image.jpg",
-          width: 1200,
-          height: 630,
-            alt: t.philosophy.meta.title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t.philosophy.meta.title,
-      description: t.philosophy.meta.description,
-      images: ["/og-image.jpg"],
-      creator: "@hasanahmad",
-    },
-  };
+  const { philosophy } = await getDictionary(lang);
+  return createMeta({
+    lang,
+    title: philosophy.meta.title,
+    description: philosophy.meta.description,
+    keywords: philosophy.meta.keywords,
+    authors: philosophy.meta.authors,
+    pathname: "/philosophy",
+  });
 }
-export default async function Philosophy({ params }: { params: Promise<{ lang: Locale }> }) {
+
+export default async function Philosophy({ params }: { params: Promise<{ lang: Lang }> }) {
   const { lang } = await params;
+  const dictionaries = await getDictionary(lang);
   return (
-    <>
-      <Header />
-      <main>
-        <PhilosophyPage locale={lang} />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <PhilosophyPage philosophyDict={dictionaries.philosophy} lang={lang} />
+    </main>
   );
 } 

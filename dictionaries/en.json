@@ -1,0 +1,324 @@
+{
+  "common": {
+    "meta": {
+      "title": "Hasan Smadi | Founder at BlendLab",
+      "description": "Founder building digital systems, platforms, and products that power real businesses.",
+      "keywords": [
+        "Hasan Smadi",
+        "BlendLab",
+        "Digital Systems",
+        "Platforms",
+        "Entrepreneurship",
+        "AI",
+        "Startups",
+        "Business Systems"
+      ],
+      "authors": [{ "name": "Hasan Smadi" }],
+      "creator": "Hasan Smadi"
+    },
+    "header": {
+      "about": "About",
+      "skills": "Skills",
+      "achievements": "Achievements",
+      "testimonials": "Testimonials",
+      "contact": "Contact",
+      "ideas": "Ideas",
+      "philosophy": "Philosophy"
+    },
+    "footer": { "rights": "All rights reserved." },
+    "language": { "en": "English", "ar": "Arabic" }
+  },
+  "home": {
+    "hero": {
+      "greeting": "Hi, I'm",
+      "name": "Hasan Smadi",
+      "title": "I build digital systems and platforms that power real businesses.",
+      "description": "Founder of BlendLab, where I work on building products and digital infrastructure. Previously built and experimented with platforms such as Tesaa, and systems powering operations and booking platforms for companies like Rotana Star. Here I share ideas about building companies, designing systems, and the future of digital economies.",
+      "aboutButton": "Explore My Work",
+      "connectButton": "Read My Ideas"
+    }
+  },
+  "about": {
+    "meta": {
+      "title": "About | Hasan Smadi",
+      "description": "Hasan Smadi — Founder and builder focused on creating digital systems, platforms, and products that power real businesses.",
+      "keywords": [
+        "Hasan Smadi",
+        "BlendLab",
+        "Digital Systems",
+        "Platforms",
+        "Entrepreneurship",
+        "AI",
+        "Startups",
+        "Business Systems"
+      ],
+      "authors": [{ "name": "Hasan Smadi" }],
+      "creator": "Hasan Smadi"
+    },
+    "title": "About Me",
+    "name": "Hasan Smadi",
+    "intro": "I'm a founder and builder focused on creating digital systems, platforms, and products that power real businesses.",
+    "paragraph1": "Over the past years I've worked on building and experimenting with different types of digital projects — from media platforms to business infrastructure and technology ventures.",
+    "keyIdea": "Great companies are not built by ideas alone, but by the systems that make those ideas work.",
+    "today": "Today my work revolves around designing digital systems and platforms that help businesses operate, grow, and scale.",
+    "whatIBuilt": {
+      "title": "What I've Built",
+      "intro": "Throughout my journey I've launched and worked on several projects across different industries.",
+      "projects": [
+        {
+          "icon": "building2",
+          "name": "BlendLab",
+          "description": "BlendLab is a technology studio focused on building digital products, platforms, and systems.",
+          "detail": "It serves as the environment where I experiment with ideas, develop new technologies, and build infrastructure for companies."
+        },
+        {
+          "icon": "calendarCheck",
+          "name": "Rotana Star",
+          "description": "I worked on designing and building a comprehensive digital platform for Rotana Star, including:",
+          "items": [
+            "online booking infrastructure",
+            "operational management systems",
+            "financial and accounting workflows",
+            "customer-facing digital experiences"
+          ],
+          "focus": "This project focused on transforming traditional business operations into structured digital systems."
+        },
+        {
+          "icon": "newspaper",
+          "name": "Tesaa",
+          "description": "Tesaa is a multilingual digital news platform built to explore how modern media can scale through technology.",
+          "detail": "The platform publishes news in Arabic and automatically translates content into multiple languages using AI-powered workflows.",
+          "experiment": "It was an experiment in building scalable digital media systems."
+        },
+        {
+          "icon": "scale",
+          "name": "Bunud",
+          "description": "Bunud was an experimental platform exploring how artificial intelligence could be applied within the legal domain.",
+          "detail": "The project focused on structuring legal knowledge and enabling AI-assisted research and drafting, aiming to simplify complex legal workflows.",
+          "experiment": "Although the platform was later paused, the experience provided deep insights into how AI systems interact with structured knowledge and professional domains such as law."
+        },
+        {
+          "icon": "home",
+          "name": "Pin Properties",
+          "description": "I also worked on digital systems within the real estate sector, exploring how property platforms and data-driven systems can improve how real estate businesses operate."
+        }
+      ]
+    },
+    "howIThink": {
+      "title": "How I Think",
+      "intro": "My work sits at the intersection of:",
+      "intersections": [
+        "technology",
+        "business systems",
+        "digital platforms",
+        "entrepreneurship"
+      ],
+      "keyThought": "I'm particularly interested in how systems shape the success or failure of companies.",
+      "insight": "Most businesses don't fail because of bad ideas — they fail because they lack the systems required to execute those ideas consistently."
+    },
+    "whatIShare": {
+      "title": "What I Share",
+      "intro": "On this site I write and share ideas about:",
+      "topics": [
+        "building companies",
+        "designing systems",
+        "digital platforms",
+        "entrepreneurship",
+        "the future of technology and digital economies"
+      ],
+      "goal": "The goal is simple:",
+      "goalDetail": "to explore how real products, companies, and platforms are actually built."
+    },
+    "outsideOfWork": {
+      "title": "Outside of Work",
+      "description": "Beyond building companies and products, I'm deeply interested in the long-term relationship between technology, economic development, and how systems shape societies."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "If you'd like to connect, collaborate, or discuss ideas, feel free to reach out.",
+      "cta": "Get in touch"
+    },
+    "home": {
+      "intro": "I'm a founder and builder focused on creating digital systems, platforms, and products that power real businesses.",
+      "paragraph": "Over the past years I've worked on building and experimenting with different types of digital projects — from media platforms to business infrastructure and technology ventures.",
+      "keyIdea": "Great companies are not built by ideas alone, but by the systems that make those ideas work.",
+      "focus": "Today my work revolves around designing digital systems and platforms that help businesses operate, grow, and scale.",
+      "cta": "Learn more about me"
+    }
+  },
+  "ideas": {
+    "meta": {
+      "title": "Ideas & Essays | Hasan Smadi",
+      "description": "Ideas and essays by Hasan Smadi, Founder of BlendLab - Builder of digital systems and platforms.",
+      "keywords": [
+        "Hasan Smadi",
+        "BlendLab",
+        "Founder",
+        "Builder",
+        "Digital Systems",
+        "Platforms"
+      ],
+      "authors": [{ "name": "Hasan Smadi" }],
+      "creator": "Hasan Smadi"
+    },
+    "title": "Ideas & Essays",
+    "subtitle": "Latest insights, ideas and perspectives on building companies, designing systems, and the future of digital economies.",
+    "viewAll": "View All Articles",
+    "featured": "Featured Articles",
+    "readMore": "Read More",
+    "allArticles": "All Articles",
+    "newsletter": {
+      "title": "Stay Updated",
+      "description": "Subscribe to our newsletter to receive the latest ideas, essays and perspectives on building companies, designing systems, and the future of digital economies.",
+      "placeholder": "Your Email Address",
+      "button": "Subscribe"
+    },
+    "categories": {
+      "all": "All",
+      "technology": "Technology",
+      "leadership": "Leadership",
+      "sustainability": "Sustainability",
+      "ethics": "Ethics",
+      "business": "Business",
+      "design": "Design"
+    },
+    "readTime": "{{time}} min read",
+    "backToArticles": "Back to Articles",
+    "share": "Share Article",
+    "aboutAuthor": "About the Author",
+    "relatedArticles": "Related Articles",
+    "previousArticle": "Previous Article",
+    "nextArticle": "Next Article",
+    "linkCopied": "Link copied to clipboard",
+    "copyFailed": "Failed to copy link",
+    "copyLink": "Copy link",
+    "copied": "Copied"
+  },
+  "philosophy": {
+    "meta": {
+      "title": "My Philosophy | Hasan Smadi",
+      "description": "How I think about building companies and systems — shaped by years of experimenting with digital platforms and business infrastructure.",
+      "keywords": [
+        "Hasan Smadi",
+        "BlendLab",
+        "Digital Systems",
+        "Platforms",
+        "Entrepreneurship",
+        "AI",
+        "Startups",
+        "Business Systems"
+      ],
+      "authors": [{ "name": "Hasan Smadi" }],
+      "creator": "Hasan Smadi"
+    },
+    "title": "My Philosophy",
+    "signatureQuote": "Ideas don't build companies. Systems do.",
+    "intro": {
+      "paragraph1": "The way I think about building companies and systems has been shaped by years of experimenting with digital platforms, infrastructure, and business systems.",
+      "patternLabel": "Across different industries, I've noticed a recurring pattern:",
+      "pattern": "Most ideas fail not because they are bad, but because the systems behind them are weak.",
+      "paragraph2": "This perspective shapes how I approach building products, companies, and technology."
+    },
+    "corePrinciples": "Core Principles",
+    "principles": {
+      "systems": {
+        "title": "Systems Over Ideas",
+        "description": "Ideas are everywhere. Execution is rare. What separates successful companies from failed ones is not the brilliance of their ideas, but the strength of the systems that make those ideas repeatable. A good system can turn an average idea into a working business."
+      },
+      "build": {
+        "title": "Build Things That Work",
+        "description": "I'm less interested in theory and more interested in building things that actually operate in the real world. Platforms, products, and systems should be designed around how businesses really function — not how we imagine they should."
+      },
+      "longTerm": {
+        "title": "Long-Term Thinking",
+        "description": "Technology evolves quickly, but strong systems are built with long-term thinking. Short-term gains often come at the expense of stability and scalability. The goal is to build infrastructure that can support growth over time."
+      },
+      "simplicity": {
+        "title": "Simplicity Scales",
+        "description": "Complex systems tend to break. The best systems are often the simplest ones — clearly designed, structured, and easy to maintain. Scalable systems are not complicated; they are well designed."
+      }
+    },
+    "closingThought": {
+      "title": "Closing Thought",
+      "line1": "Technology is not the end goal.",
+      "line2": "It is simply a tool.",
+      "paragraph": "What truly matters is how systems, platforms, and ideas come together to create something that works — for businesses, for people, and for the future."
+    },
+    "learnMore": "Learn More About My Approach",
+    "cta": {
+      "title": "Let's Build",
+      "description": "Interested in discussing systems, products, or how to approach a build? Get in touch.",
+      "button": "Get in Touch",
+      "scheduleCall": "Schedule a Call",
+      "viewPortfolio": "View My Work"
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact | Hasan Smadi",
+      "description": "Contact Hasan Smadi, Founder at BlendLab — Builder of digital systems and platforms.",
+      "keywords": [
+        "Hasan Smadi",
+        "BlendLab",
+        "Digital Systems",
+        "Platforms",
+        "Entrepreneurship",
+        "AI",
+        "Startups",
+        "Business Systems"
+      ],
+      "authors": [{ "name": "Hasan Smadi" }],
+      "creator": "Hasan Smadi"
+    },
+    "title": "Get In Touch",
+    "subtitle": "Interested in connecting with Hasan Smadi or exploring opportunities with BlendLab?",
+    "info": {
+      "title": "Contact Information",
+      "email": { "title": "Email", "value": "hsn@blendlab.ae" },
+      "phone": { "title": "Phone", "value": "+971 50 883 8637" },
+      "headquarters": {
+        "title": "Headquarters",
+        "value": "United Arab Emirates"
+      }
+    },
+    "benefits": {
+      "title": "Why Connect?",
+      "items": [
+        "Discuss ideas",
+        "Explore collaborations",
+        "Talk about building systems and products"
+      ]
+    },
+    "form": {
+      "title": "Send a Message",
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message",
+      "placeholders": {
+        "name": "Your Name",
+        "email": "Your Email",
+        "subject": "Message Subject",
+        "message": "Your Message"
+      },
+      "button": "Send Message",
+      "sending": "Sending...",
+      "success": "Message Sent!",
+      "successDescription": "Thank you for reaching out. We'll get back to you soon."
+    },
+    "cta": {
+      "title": "Let's Connect",
+      "description": "Ready to discuss ideas, explore collaborations, or talk about building systems and products? Reach out.",
+      "scheduleCall": "Schedule a Call",
+      "viewPortfolio": "View My Work"
+    },
+    "success": {
+      "title": "Message Sent!",
+      "description": "Thank you for reaching out. We'll get back to you soon.",
+      "toast": "Message sent successfully!"
+    },
+    "error": { "toast": "Failed to send message. Please try again." },
+    "sending": "Sending..."
+  }
+}

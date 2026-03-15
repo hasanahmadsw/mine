@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -18,15 +18,15 @@ export async function POST(request: Request) {
 
     if (!name || !email || !message) {
       return NextResponse.json(
-        { error: 'Name, email and message are required' },
-        { status: 400 }
+        { error: "Name, email and message are required" },
+        { status: 400 },
       );
     }
 
     const companyMailOptions = {
       from: {
-        name: 'Hasan Ahmad Contact Form',
-        address: process.env.SMTP_FROM as string
+        name: "Hasan Ahmad Contact Form",
+        address: process.env.SMTP_FROM as string,
       },
       to: process.env.CONTACT_EMAIL,
       subject: `New Contact Form Submission from ${name}`,
@@ -42,7 +42,6 @@ export async function POST(request: Request) {
               <h3 style="color: #1e293b; margin: 0 0 16px 0; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0;">
                 Contact Information
               </h3>
-              
               <table style="width: 100%; border-collapse: collapse;">
                 <tr>
                   <td style="padding: 8px 0; color: #64748b; width: 120px;">Name:</td>
@@ -56,7 +55,7 @@ export async function POST(request: Request) {
                 </tr>
                 <tr>
                   <td style="padding: 8px 0; color: #64748b;">Subject:</td>
-                  <td style="padding: 8px 0; color: #1e293b;">${subject || 'Not specified'}</td>
+                  <td style="padding: 8px 0; color: #1e293b;">${subject || "Not specified"}</td>
                 </tr>
               </table>
             </div>
@@ -83,11 +82,11 @@ export async function POST(request: Request) {
 
     const customerMailOptions = {
       from: {
-        name: 'Hasan Ahmad',
-        address: process.env.SMTP_FROM as string
+        name: "Hasan Ahmad",
+        address: process.env.SMTP_FROM as string,
       },
       to: email,
-      subject: 'Thank you for contacting Hasan Ahmad',
+      subject: "Thank you for contacting Hasan Ahmad",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #000000;">Thank you for contacting Hasan Ahmad</h2>
@@ -98,7 +97,7 @@ export async function POST(request: Request) {
           
           <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="margin-top: 0;">Your Message Details:</h3>
-            <p><strong>Subject:</strong> ${subject || 'Not specified'}</p>
+            <p><strong>Subject:</strong> ${subject || "Not specified"}</p>
             <p><strong>Your Message:</strong></p>
             <p style="color: #4b5563;">${message}</p>
           </div>
@@ -119,18 +118,18 @@ export async function POST(request: Request) {
 
     await Promise.all([
       transporter.sendMail(companyMailOptions),
-      transporter.sendMail(customerMailOptions)
+      transporter.sendMail(customerMailOptions),
     ]);
 
     return NextResponse.json(
-      { message: 'Email sent successfully' },
-      { status: 200 }
+      { message: "Email sent successfully" },
+      { status: 200 },
     );
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error("Error sending email:", error);
     return NextResponse.json(
-      { error: 'Failed to send email' },
-      { status: 500 }
+      { error: "Failed to send email" },
+      { status: 500 },
     );
   }
-} 
+}

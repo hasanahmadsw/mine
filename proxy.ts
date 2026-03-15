@@ -1,25 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { i18n } from './app/i18n/settings';
+import { i18n } from './utils/translations/i18n-config';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   
-  // Check if the pathname is missing a locale
-  const pathnameIsMissingLocale = i18n.locales.every(
-    locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-  );
-  
-  // Get language preference from request
-  const locale = getLocaleFromRequest(request);
-  
-  // Redirect if there is no locale in the pathname
-  if (pathnameIsMissingLocale) {
-    return NextResponse.redirect(
-      new URL(`/${locale}${pathname.startsWith('/') ? pathname : `/${pathname}`}`, request.url)
-    );
+  // English is default: /en and /en/* should redirect to clean URLs (no /en)
+  if (pathname === '/en' || pathname === '/en/') {
+    return NextResponse.redirect(new URL('/', request.url));
+  }
+  if (pathname.startsWith('/en/')) {
+    const pathWithoutEn = pathname.slice(4) || '/';
+    return NextResponse.redirect(new URL(pathWithoutEn, request.url));
   }
   
-  return NextResponse.next();
+  // Arabic: /ar and /ar/* - allow through (no change)
+  if (pathname.startsWith('/ar')) {
+    return NextResponse.next();
+  }
+  
+  // No locale (e.g. /, /about, /thoughts)
+  const locale = getLocaleFromRequest(request);
+  
+  // If user prefers Arabic, redirect to /ar/* so URL shows the locale
+  if (locale === 'ar') {
+    const arPath = `/ar${pathname === '/' ? '' : pathname}`;
+    return NextResponse.redirect(new URL(arPath, request.url));
+  }
+  
+  // English (default): rewrite to /en/* internally, URL stays clean (no /en)
+  const internalPath = `/en${pathname === '/' ? '' : pathname}`;
+  return NextResponse.rewrite(new URL(internalPath, request.url));
 }
 
 // Define paths that don't need the locale prefix

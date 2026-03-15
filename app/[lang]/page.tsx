@@ -1,66 +1,41 @@
-import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
-import { ThoughtsSection } from "@/components/sections/ThoughtsSection";
+import { IdeasSection } from "@/components/sections/IdeasSection";
 import { PhilosophySection } from "@/components/sections/PhilosophySection";
 import { ContactSection } from "@/components/sections/ContactSection";
-import { Footer } from "@/components/Footer";
-import { Locale } from "@/app/i18n/settings";
-import { getFeaturedThoughts } from "@/lib/thoughts";
-import { Metadata } from "next";
-import { getTranslations } from "@/app/i18n/server";
+import { JsonLd } from "@/components/JsonLd";
+import { getFeaturedIdeas } from "@/lib/ideas";
+import { getDictionary } from "@/utils/translations/dictionary-utils";
+import type { Lang } from "@/utils/translations/i18n-config";
+import { createMeta } from "@/utils/seo/meta/createMeta";
+import { generateHomeSchema } from "@/utils/seo/schema/home-schema";
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ lang: Lang }> }) {
   const { lang } = await params;
-  const t = await getTranslations(lang);
-  return {
-    title: t.meta.title,
-    description: t.meta.description,
-    keywords: t.meta.keywords,
-    authors: [{ name: t.meta.authors }],
-    creator: t.meta.creator,
-    metadataBase: new URL("https://hasanahmad.net"),
-    openGraph: {
-      type: "website",
-      locale: lang === "ar" ? "ar_US" : "en_US",
-      url: "https://hasanahmad.net",
-      title: t.meta.title,
-      description: t.meta.description,
-      siteName: t.meta.siteName,
-      images: [
-        {
-          url: "/og-image.jpg",
-          width: 1200,
-          height: 630,
-          alt: t.meta.title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t.meta.title,
-      description: t.meta.description,
-      images: ["/og-image.jpg"],
-      creator: "@hasanahmad",
-    },
-  };
+  const { common } = await getDictionary(lang);
+  return createMeta({
+    lang,
+    title: common.meta.title,
+    description: common.meta.description,
+    keywords: common.meta.keywords,
+    authors: common.meta.authors,
+    pathname: "/",
+  });
 }
 
-export default async function Home({ params }: { params: Promise<{ lang: Locale }> }) {
+export default async function Home({ params }: { params: Promise<{ lang: Lang }> }) {
   const { lang } = await params;
-  const featuredThoughts = getFeaturedThoughts(lang);
-  
+  const dictionaries = await getDictionary(lang);
+  const featuredIdeas = getFeaturedIdeas(lang);
+
   return (
-    <>
-      <Header />
-      <main>
-        <HeroSection locale={lang} />
-        <AboutSection locale={lang} />
-        <ThoughtsSection featuredThoughts={featuredThoughts} locale={lang} />
-        <PhilosophySection locale={lang} />
-        <ContactSection locale={lang} />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <JsonLd data={generateHomeSchema(lang)} />
+      <HeroSection homeDict={dictionaries.home} lang={lang} />
+      <AboutSection aboutDict={dictionaries.about} lang={lang} />
+      <IdeasSection featuredIdeas={featuredIdeas} ideasDict={dictionaries.ideas} lang={lang} />
+      <PhilosophySection philosophyDict={dictionaries.philosophy} lang={lang} />
+      <ContactSection contactDict={dictionaries.contact} lang={lang} />
+    </main>
   );
 }

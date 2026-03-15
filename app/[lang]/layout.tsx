@@ -1,47 +1,42 @@
 import type { Metadata } from "next";
-import { Poppins, Almarai } from "next/font/google";
+import { seoConfig } from "@/utils/seo/seo.config";
 import "./globals.css";
-import { getTranslations } from "../i18n/server";
-import { TranslationsProvider } from "../i18n/client";
-import { Locale, getDirection } from "../i18n/settings";
+import { getDictionary } from "@/utils/translations/dictionary-utils";
+import type { Lang } from "@/utils/translations/i18n-config";
 import { ThemeProvider } from "next-themes";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { LangAttribute } from "@/components/LangAttribute";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const almarai = Almarai({
-  variable: "--font-almarai",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
-
-
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: {
+      template: `%s | ${seoConfig.siteName}`,
+      default: seoConfig.siteName,
+    },
+    robots: { googleBot: { index: true, follow: true } },
+  };
+}
 
 export default async function RootLayout({
   children,
   params
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ lang: Locale }>;
+  params: Promise<{ lang: string }>;
 }>) {
   const { lang } = await params;
-  const translations = await getTranslations(lang);
-  const dir = getDirection(lang);
-  
+  const langTyped = lang as Lang;
+  const dictionaries = await getDictionary(langTyped);
+
   return (
-    <html lang={lang} dir={dir} className="scroll-smooth" suppressHydrationWarning>
-      <body
-        className={`${poppins.variable} ${almarai.variable} antialiased`}
-      >
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <TranslationsProvider translations={translations}>
-            {children}
-          </TranslationsProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <div>
+      <LangAttribute lang={langTyped} />
+      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <Header commonDict={dictionaries.common} lang={langTyped} />
+        {children}
+        <Footer commonDict={dictionaries.common} lang={langTyped} />
+      </ThemeProvider>
+    </div>
   );
 }
