@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import type { IdeasDict } from "@/utils/translations/dictionary-types";
 import type { Lang } from "@/utils/translations/i18n-config";
-import { getPathPrefix } from "@/utils/translations/language-utils";
+import { fmt, getPathPrefix } from "@/utils/translations/language-utils";
 import Link from "next/link";
 import { IdeaMeta } from "@/lib/ideas";
 
@@ -39,10 +39,16 @@ const Article = ({ id, slug, title, excerpt, date, lang, ideasDict }: ArticlePro
         <p className="text-muted-foreground">{excerpt}</p>
       </CardContent>
       <CardFooter className="py-2">
-        <Link href={`${getPathPrefix(lang)}/ideas/${slug}`} className="w-full">
+        <Link
+          href={`${getPathPrefix(lang)}/ideas/${slug}`}
+          className="w-full"
+          aria-label={title}
+        >
           <Button variant="outline" className="w-full group">
-            {ideasDict.readMore}
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 ml-2 rtl:mr-2 rtl:ml-0 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180">
+            <span className="line-clamp-1 text-left rtl:text-right">
+              {fmt(ideasDict.readArticle, { title: title })}
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 ml-2 rtl:mr-2 rtl:ml-0 shrink-0 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180">
               <path strokeLinecap="square" strokeLinejoin="miter" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
           </Button>

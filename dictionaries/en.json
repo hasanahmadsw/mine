@@ -168,6 +168,7 @@
     "viewAll": "View All Articles",
     "featured": "Featured Articles",
     "readMore": "Read More",
+    "readArticle": "Read: {{title}}",
     "allArticles": "All Articles",
     "newsletter": {
       "title": "Stay Updated",

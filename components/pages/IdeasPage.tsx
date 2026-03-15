@@ -74,10 +74,16 @@ export function IdeasPage({ articles, featuredArticles, categories, ideasDict, c
                     <Calendar className="h-3.5 w-3.5 mr-2" />
                     {formatDate(article.date)}
                   </div>
-                  <Link href={`${getPathPrefix(lang)}/ideas/${article.slug}`}>
+                  <Link
+                    href={`${getPathPrefix(lang)}/ideas/${article.slug}`}
+                    className="inline-flex items-center"
+                    aria-label={article.title}
+                  >
                     <Button variant="ghost" size="sm" className="text-primary p-0 hover:bg-transparent hover:text-primary/80">
-                      {ideasDict.readMore}
-                      <ArrowRight className="ml-2 rtl:mr-2 rtl:ml-0 h-4 w-4 rtl:rotate-180" />
+                      <span className="line-clamp-1 max-w-[200px] sm:max-w-[280px]">
+                        {fmt(ideasDict.readArticle, { title: article.title })}
+                      </span>
+                      <ArrowRight className="ml-2 rtl:mr-2 rtl:ml-0 h-4 w-4 shrink-0 rtl:rotate-180" />
                     </Button>
                   </Link>
                 </CardFooter>

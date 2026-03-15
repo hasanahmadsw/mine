@@ -89,10 +89,16 @@ export function IdeasFilter({ articles, categories, ideasDict, lang }: IdeasFilt
                   <Calendar className="h-3 w-3 mr-1" />
                   {formatDate(article.date)}
                 </div>
-                <Link href={`${getPathPrefix(lang)}/ideas/${article.slug}`}>
+                <Link
+                  href={`${getPathPrefix(lang)}/ideas/${article.slug}`}
+                  className="inline-flex items-center"
+                  aria-label={article.title}
+                >
                   <Button variant="ghost" size="sm" className="text-primary p-0 text-sm hover:bg-transparent hover:text-primary/80">
-                    {ideasDict.readMore}
-                    <ArrowRight className="ml-1 rtl:mr-1 rtl:ml-0 h-3 w-3 rtl:rotate-180" />
+                    <span className="line-clamp-1 max-w-[180px] sm:max-w-[240px]">
+                      {fmt(ideasDict.readArticle, { title: article.title })}
+                    </span>
+                    <ArrowRight className="ml-1 rtl:mr-1 rtl:ml-0 h-3 w-3 shrink-0 rtl:rotate-180" />
                   </Button>
                 </Link>
               </CardFooter>
