@@ -1,4 +1,6 @@
-import { getSitemapEntityCounts } from "@/lib/sitemap-data";
+import {
+  generateSitemapEntities,
+} from "@/lib/sitemap-data";
 import { seoConfig } from "@/utils/seo/seo.config";
 import { i18n } from "@/utils/translations/i18n-config";
 import { NextResponse } from "next/server";
@@ -19,19 +21,23 @@ export async function GET() {
 }
 
 function generateSitemapIndex(): string {
-  const entities = getSitemapEntityCounts();
+  const sitemaps = generateSitemapEntities();
 
-  const sitemapsXml = entities
-    .flatMap(({ entity, count }) =>
-      (i18n.locales as readonly string[]).flatMap((lang) =>
-        Array.from({ length: count }, (_, i) => `
+  const sitemapsXml = sitemaps
+    .flatMap((sitemap) => {
+      const langsToInclude = (i18n.locales as readonly string[]);
+
+      return langsToInclude.flatMap((lang: string) =>
+        Array.from(
+          { length: sitemap.count },
+          (_, id) => `
   <sitemap>
-    <loc>${siteURL}/sitemap/${lang}/${entity}/${i + 1}.xml</loc>
+    <loc>${siteURL}/sitemap/${lang}/${sitemap.entity}/${id + 1}.xml</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
   </sitemap>`
         )
-      )
-    )
+      );
+    })
     .join("");
 
   return `<?xml version="1.0" encoding="UTF-8"?>

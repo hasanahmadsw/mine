@@ -5,7 +5,7 @@ import {
   SITEMAP_ENTITIES,
   type SitemapEntity,
 } from "@/lib/sitemap-data";
-import { generateSitemapXml } from "@/utils/seo/sitemap/sitemap-utils";
+import { generateSitemapXml, isLanguageInSitemap } from "@/utils/seo/sitemap/sitemap-utils";
 import { i18n, type Lang } from "@/utils/translations/i18n-config";
 import type { MetadataRoute } from "next";
 import { NextResponse } from "next/server";
@@ -26,13 +26,24 @@ export async function GET(
     return new NextResponse("Invalid entity", { status: 400 });
   }
 
+  const isStaticEntity = entity === "static";
+  const langAllowed = isStaticEntity || isLanguageInSitemap(lang as Lang);
+  if (!langAllowed) {
+    return new NextResponse(generateSitemapXml([]), {
+      headers: {
+        "Content-Type": "application/xml; charset=utf-8",
+        "X-Content-Type-Options": "nosniff",
+      },
+    });
+  }
+
   const indexNum = index.replace(/\.xml$/, "");
   let page = Number.parseInt(indexNum, 10);
   if (Number.isNaN(page) || page < 1 || page > 1000) {
     page = 1;
   }
 
-  const urls = await generateEntityUrls(entity as SitemapEntity, page);
+  const urls = generateEntityUrls(lang as Lang, entity as SitemapEntity, page);
   const sitemap = generateSitemapXml(urls);
 
   return new NextResponse(sitemap, {
@@ -43,19 +54,20 @@ export async function GET(
   });
 }
 
-async function generateEntityUrls(
+function generateEntityUrls(
+  lang: Lang,
   entity: SitemapEntity,
   page: number
-): Promise<MetadataRoute.Sitemap> {
+): MetadataRoute.Sitemap {
   switch (entity) {
     case "static":
-      return getStaticUrls();
+      return getStaticUrls(lang);
     case "ideas": {
-      const { urls } = getIdeasUrls(page);
+      const { urls } = getIdeasUrls(lang, page);
       return urls;
     }
     case "case-studies": {
-      const { urls } = getCaseStudiesUrls(page);
+      const { urls } = getCaseStudiesUrls(lang, page);
       return urls;
     }
     default:
