@@ -34,7 +34,7 @@ export function proxy(request: NextRequest) {
 
 // Define paths that don't need the locale prefix
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|images|favicons|favicon\\.ico|robots\\.txt).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|images|favicons|favicon\\.ico|robots\\.txt|sitemap\\.xml).*)"],
 };
 
 // Get locale preference from request (cookies or headers)
