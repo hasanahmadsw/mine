@@ -3,8 +3,6 @@ import { seoConfig } from "@/utils/seo/seo.config";
 import { getSortedIdeasData } from "@/lib/ideas";
 import { getCaseStudies } from "@/lib/case-studies";
 
-const staticPaths = ["/", "/about", "/work-with-me", "/philosophy", "/ideas"] as const;
-
 function buildSitemapEntry(
   pathEn: string,
   pathAr: string,
@@ -31,10 +29,9 @@ function buildSitemapEntry(
   };
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export function getSitemapEntries(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
-  // Static pages
   entries.push(
     buildSitemapEntry("/", "/ar", {
       changeFrequency: "weekly",
@@ -47,7 +44,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   entries.push(buildSitemapEntry("/philosophy", "/ar/philosophy"));
   entries.push(buildSitemapEntry("/ideas", "/ar/ideas"));
 
-  // Case study detail pages
   const caseStudiesEn = getCaseStudies("en");
   const caseStudiesAr = getCaseStudies("ar");
   const caseStudySlugs = new Set([
@@ -63,7 +59,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     );
   }
 
-  // Idea pages - English
   const ideasEn = getSortedIdeasData("en");
   for (const idea of ideasEn) {
     entries.push(
@@ -75,7 +70,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     );
   }
 
-  // Idea pages - Arabic (may have different slugs; add only if not already in list)
   const ideasAr = getSortedIdeasData("ar");
   const slugsEn = new Set(ideasEn.map((i) => i.slug));
   for (const idea of ideasAr) {
