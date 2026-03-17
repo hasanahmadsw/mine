@@ -10,10 +10,10 @@ import { LangAttribute } from "@/components/LangAttribute";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: {
-      template: `%s | ${seoConfig.siteName}`,
-      default: seoConfig.siteName,
-    },
+    // title: {
+    //   template: `%s | ${seoConfig.siteName}`,
+    //   default: seoConfig.siteName,
+    // },
     robots: { googleBot: { index: true, follow: true } },
   };
 }
